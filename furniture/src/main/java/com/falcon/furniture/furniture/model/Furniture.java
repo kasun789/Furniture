@@ -31,4 +31,7 @@ public class Furniture {
     @DynamoDBAttribute
     private Integer warrantyPeriod;
 
+    @DynamoDBAttribute
+    private String modelId;
+
 }

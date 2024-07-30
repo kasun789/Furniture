@@ -10,6 +10,7 @@ import com.falcon.furniture.furniture.dto.AddFurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureErrorDto;
 import com.falcon.furniture.furniture.dto.FurnitureDto;
 import com.falcon.furniture.furniture.model.Furniture;
+import com.falcon.furniture.furniture.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,9 @@ public class FurnitureDaoImpl implements FurnitureDao {
     @Autowired
     private DynamoDBMapper dynamoDBMapper;
 
+    @Autowired
+    private ModelDaoImpl modelRepository;
+
     public AddFurnitureDto add(Furniture furniture) throws SecurityException{
         AddFurnitureDto addFurnitureDto = new AddFurnitureDto();
         List<Furniture> allFurniture = dynamoDBMapper.scan(Furniture.class, new DynamoDBScanExpression());
@@ -31,6 +35,16 @@ public class FurnitureDaoImpl implements FurnitureDao {
                 return addFurnitureDto;
             }
         }
+
+        Model model = modelRepository.getModelById(furniture.getModelId()).getModel();
+        System.out.println(furniture.getModelId());
+
+        if(model == null){
+            addFurnitureDto.setFurniture(null);
+            addFurnitureDto.setErrorMessage("Model does not exist.");
+            return addFurnitureDto;
+        }
+
         try {
             dynamoDBMapper.save(furniture);
             addFurnitureDto.setFurniture(furniture);
