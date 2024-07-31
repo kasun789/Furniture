@@ -1,5 +1,6 @@
 package com.falcon.furniture.furniture.service.Impl;
 
+import com.falcon.furniture.furniture.dao.Impl.ModelDaoImpl;
 import com.falcon.furniture.furniture.dto.AddFurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureErrorDto;
