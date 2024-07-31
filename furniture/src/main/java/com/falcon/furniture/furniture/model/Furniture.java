@@ -33,5 +33,4 @@ public class Furniture {
 
     @DynamoDBAttribute
     private String modelId;
-
 }
