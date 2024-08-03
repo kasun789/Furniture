@@ -9,5 +9,6 @@ import com.falcon.furniture.furniture.model.Model;
 public interface ModelDao {
 
     ModelDto add(Model model);
+
     ModelDto getModelById(String modelId);
 }

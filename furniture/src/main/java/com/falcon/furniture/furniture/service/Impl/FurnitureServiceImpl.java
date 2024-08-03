@@ -26,17 +26,17 @@ public class FurnitureServiceImpl implements FurnitureService {
     }
 
     @Override
-    public FurnitureDto viewFurnitureItem(String furnitureId){
+    public FurnitureDto viewFurnitureItem(String furnitureId) {
         return furnitureRepository.getItemById(furnitureId);
     }
 
     @Override
-    public FurnitureErrorDto deleteFurniture(String furnitureId){
+    public FurnitureErrorDto deleteFurniture(String furnitureId) {
         return furnitureRepository.delete(furnitureId);
     }
 
     @Override
-    public FurnitureErrorDto updateFurniture(String furnitureId, Furniture furniture){
+    public FurnitureErrorDto updateFurniture(String furnitureId, Furniture furniture) {
         return furnitureRepository.update(furnitureId, furniture);
     }
 
