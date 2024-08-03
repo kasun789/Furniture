@@ -25,7 +25,8 @@ public class FurnitureDaoImpl implements FurnitureDao {
     @Autowired
     private ModelDaoImpl modelRepository;
 
-    public AddFurnitureDto add(Furniture furniture) throws SecurityException{
+    public AddFurnitureDto add(Furniture furniture) throws SecurityException {
+
         AddFurnitureDto addFurnitureDto = new AddFurnitureDto();
         List<Furniture> allFurniture = dynamoDBMapper.scan(Furniture.class, new DynamoDBScanExpression());
         for (Furniture existingFurniture : allFurniture) {
@@ -39,7 +40,7 @@ public class FurnitureDaoImpl implements FurnitureDao {
         Model model = modelRepository.getModelById(furniture.getModelId()).getModel();
         System.out.println(furniture.getModelId());
 
-        if(model == null){
+        if (model == null) {
             addFurnitureDto.setFurniture(null);
             addFurnitureDto.setErrorMessage("Model does not exist.");
             return addFurnitureDto;
@@ -49,8 +50,7 @@ public class FurnitureDaoImpl implements FurnitureDao {
             dynamoDBMapper.save(furniture);
             addFurnitureDto.setFurniture(furniture);
             addFurnitureDto.setErrorMessage(null);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             addFurnitureDto.setFurniture(null);
             addFurnitureDto.setErrorMessage(e.getMessage());
         }
@@ -63,8 +63,7 @@ public class FurnitureDaoImpl implements FurnitureDao {
             Furniture furniture = dynamoDBMapper.load(Furniture.class, furnitureId);
             furnitureDao.setFurniture(furniture);
             furnitureDao.setErrorMessage(null);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             furnitureDao.setFurniture(null);
             furnitureDao.setErrorMessage(e.getMessage());
         }
@@ -73,13 +72,12 @@ public class FurnitureDaoImpl implements FurnitureDao {
 
     public FurnitureErrorDto delete(String furnitureId) {
         FurnitureErrorDto furnitureErrorDto = new FurnitureErrorDto();
-        try{
+        try {
             Furniture furnitureItem = dynamoDBMapper.load(Furniture.class, furnitureId);
             dynamoDBMapper.delete(furnitureItem);
             furnitureErrorDto.setErrorMessage(null);
             furnitureErrorDto.setStatus("successful");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             furnitureErrorDto.setErrorMessage(e.getMessage());
             furnitureErrorDto.setStatus("unsuccessful");
         }
@@ -98,8 +96,7 @@ public class FurnitureDaoImpl implements FurnitureDao {
                                     )));
             furnitureErrorDto.setErrorMessage(null);
             furnitureErrorDto.setStatus("successful");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             furnitureErrorDto.setErrorMessage(e.getMessage());
             furnitureErrorDto.setStatus("unsuccessful");
         }

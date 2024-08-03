@@ -7,6 +7,7 @@ import com.falcon.furniture.furniture.model.Model;
 public interface ModelService {
 
     ModelDto addModel(Model model);
+
     ModelDto viewModel(String modelId);
 
 }
