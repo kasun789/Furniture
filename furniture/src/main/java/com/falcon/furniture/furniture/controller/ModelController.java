@@ -18,13 +18,13 @@ public class ModelController {
    @Autowired
    private ModelService modelService;
 
-    @PostMapping("/add")
-    public ModelDto addModelItem(@RequestBody Model model){
+    @PostMapping("/addModel")
+    public ModelDto addModel(@RequestBody Model model) {
         return modelService.addModel(model);
     }
 
-    @GetMapping("/view/{id}")
-    public ModelDto viewItem(@PathVariable("id") String modelId){
+    @GetMapping("/viewModel/{id}")
+    public ModelDto viewModel(@PathVariable("id") String modelId) {
         return modelService.viewModel(modelId);
     }
 }
