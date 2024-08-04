@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class ModelController {
 
-   @Autowired
-   private ModelService modelService;
+    @Autowired
+    private ModelService modelService;
 
     @PostMapping("/add")
-    public ModelDto addModelItem(@RequestBody Model model){
+    public ModelDto addModelItem(@RequestBody Model model) {
         return modelService.addModel(model);
     }
 
     @GetMapping("/view/{id}")
-    public ModelDto viewItem(@PathVariable("id") String modelId){
+    public ModelDto viewItem(@PathVariable("id") String modelId) {
         return modelService.viewModel(modelId);
     }
 }

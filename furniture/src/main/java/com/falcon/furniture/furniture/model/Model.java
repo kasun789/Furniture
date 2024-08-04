@@ -20,5 +20,8 @@ public class Model {
     @DynamoDBAttribute
     private String name;
 
+    @DynamoDBAttribute
+    private String manufacturerId;
+
 
 }
