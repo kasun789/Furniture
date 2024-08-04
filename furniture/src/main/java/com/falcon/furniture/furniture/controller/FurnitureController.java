@@ -43,5 +43,4 @@ public class FurnitureController {
         return furnitureService.getAllFurnitures();
     }
 
-
 }

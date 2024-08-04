@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class ModelController {
 
-   @Autowired
-   private ModelService modelService;
+    @Autowired
+    private ModelService modelService;
 
     @PostMapping("/addModel")
     public ModelDto addModel(@RequestBody Model model) {
