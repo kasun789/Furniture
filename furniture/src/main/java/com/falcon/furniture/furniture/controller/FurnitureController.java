@@ -1,6 +1,7 @@
 package com.falcon.furniture.furniture.controller;
 
 import com.falcon.furniture.furniture.dto.AddFurnitureDto;
+import com.falcon.furniture.furniture.dto.FilterFurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureErrorDto;
 import com.falcon.furniture.furniture.model.Furniture;
@@ -41,6 +42,11 @@ public class FurnitureController {
     @GetMapping("/getAllFurniture")
     public List<Furniture> getAllFurniture() {
         return furnitureService.getAllFurnitures();
+    }
+
+    @PostMapping("/filterFurnitures")
+    public List<Furniture> filterFurnitures(@RequestBody FilterFurnitureDto filterFurnitureDto) {
+        return furnitureService.getFurnituresByFilter(filterFurnitureDto);
     }
 
 }

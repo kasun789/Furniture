@@ -6,15 +6,15 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.falcon.furniture.furniture.dao.FurnitureDao;
-import com.falcon.furniture.furniture.dto.AddFurnitureDto;
-import com.falcon.furniture.furniture.dto.FurnitureErrorDto;
-import com.falcon.furniture.furniture.dto.FurnitureDto;
+import com.falcon.furniture.furniture.dto.*;
 import com.falcon.furniture.furniture.model.Furniture;
 import com.falcon.furniture.furniture.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class FurnitureDaoImpl implements FurnitureDao {
@@ -107,5 +107,27 @@ public class FurnitureDaoImpl implements FurnitureDao {
         return dynamoDBMapper.scan(Furniture.class, new DynamoDBScanExpression());
     }
 
+    @Override
+    public List<Furniture> filterFurnitures(FilterFurnitureDto filterFurnitureDto) {
+
+        Map<String, AttributeValue> eav = new HashMap<>();
+        String filterValue = filterFurnitureDto.getFilterValue();
+
+        if (filterFurnitureDto.getType() == 0) {
+            eav.put(":filterValue", new AttributeValue().withS((String) filterValue));
+
+        } else if (filterFurnitureDto.getType() == 1 || filterFurnitureDto.getType() == 2) {
+            eav.put(":filterValue", new AttributeValue().withN(filterValue));
+
+        } else {
+            throw new IllegalArgumentException("Unsupported filter value type");
+        }
+
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
+                .withFilterExpression(filterFurnitureDto.getFilterAttribute() + " = :filterValue")
+                .withExpressionAttributeValues(eav);
+
+        return dynamoDBMapper.scan(Furniture.class, scanExpression);
+    }
 
 }

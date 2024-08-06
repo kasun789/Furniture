@@ -1,8 +1,6 @@
 package com.falcon.furniture.furniture.controller;
 
-import com.falcon.furniture.furniture.dto.ChangePasswordRequestDto;
-import com.falcon.furniture.furniture.dto.ModelDto;
-import com.falcon.furniture.furniture.dto.UserDto;
+import com.falcon.furniture.furniture.dto.*;
 import com.falcon.furniture.furniture.model.Model;
 import com.falcon.furniture.furniture.model.User;
 import com.falcon.furniture.furniture.service.ModelService;
@@ -30,6 +28,21 @@ public class UserController {
     @PostMapping("changePassword")
     public UserDto changePassword(@RequestBody ChangePasswordRequestDto changePasswordRequestDto) {
         return userService.changePassword(changePasswordRequestDto);
+    }
+
+    @GetMapping("forgetPassword/{email}")
+    public ForgottenPasswordDto forgetPassword(@PathVariable("email") String email) {
+        return userService.forgottenPassword(email);
+    }
+
+    @GetMapping("checkVerificationCode/{verficationCode}")
+    public VerifyUserDto checkVerificationCode(@PathVariable("verficationCode") String verficationCode) {
+        return userService.verfyUser(verficationCode);
+    }
+
+    @PostMapping("setForgottenPassword")
+    public UserDto setForgottenPassword(@RequestBody SetForgottenPasswordDto setForgottenPasswordDto) {
+        return userService.setPassword(setForgottenPasswordDto);
     }
 }
 
