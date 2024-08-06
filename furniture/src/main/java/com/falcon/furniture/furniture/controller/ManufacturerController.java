@@ -17,13 +17,13 @@ public class ManufacturerController {
     @Autowired
     private ManufacturerService manufacturerService;
 
-    @PostMapping("/add")
-    public ManufacturerDto add(@RequestBody Manufacturer manufacturer) {
+    @PostMapping("/addManufacturer")
+    public ManufacturerDto addManufacturer(@RequestBody Manufacturer manufacturer) {
         return manufacturerService.addManufacturer(manufacturer);
     }
 
-    @GetMapping("/view/{id}")
-    public ManufacturerDto getManufacturer(@PathVariable("id") String manufacturerId) {
+    @GetMapping("/viewManufacturer/{id}")
+    public ManufacturerDto viewManufacturer(@PathVariable("id") String manufacturerId) {
         return manufacturerService.viewManufacturer(manufacturerId);
     }
 

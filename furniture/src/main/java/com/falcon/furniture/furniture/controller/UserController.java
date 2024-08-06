@@ -15,13 +15,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/add")
-    public UserDto add(@RequestBody User user) {
+    @PostMapping("/addUser")
+    public UserDto addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
 
-    @GetMapping("/view/{id}")
-    public UserDto getUser(@PathVariable("id") String userId) {
+    @GetMapping("/viewUser/{id}")
+    public UserDto viewUser(@PathVariable("id") String userId) {
         return userService.viewUser(userId);
     }
 
@@ -45,3 +45,4 @@ public class UserController {
         return userService.setPassword(setForgottenPasswordDto);
     }
 }
+

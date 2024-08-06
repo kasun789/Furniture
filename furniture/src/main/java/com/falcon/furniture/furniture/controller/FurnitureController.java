@@ -19,28 +19,28 @@ public class FurnitureController {
     @Autowired
     private FurnitureService furnitureService;
 
-    @PostMapping("/add")
+    @PostMapping("/addFurniture")
     public AddFurnitureDto addFurniture(@RequestBody Furniture furniture) {
         return furnitureService.addFurniture(furniture);
     }
 
-    @GetMapping("/view/{id}")
-    public FurnitureDto viewItem(@PathVariable("id") String furnitureId) {
+    @GetMapping("/viewIFurniture/{id}")
+    public FurnitureDto viewIFurniture(@PathVariable("id") String furnitureId) {
         return furnitureService.viewFurnitureItem(furnitureId);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public FurnitureErrorDto delete(@PathVariable("id") String furnitureId) {
+    @DeleteMapping("/deleteFurniture/{id}")
+    public FurnitureErrorDto deleteFurniture(@PathVariable("id") String furnitureId) {
         return furnitureService.deleteFurniture(furnitureId);
     }
 
-    @PutMapping("/update/{id}")
-    public FurnitureErrorDto update(@PathVariable("id") String furnitureId, @RequestBody Furniture furniture) {
+    @PutMapping("/updateFurniture/{id}")
+    public FurnitureErrorDto updateFurniture(@PathVariable("id") String furnitureId, @RequestBody Furniture furniture) {
         return furnitureService.updateFurniture(furnitureId, furniture);
     }
 
-    @GetMapping("/getAll")
-    public List<Furniture> getAll() {
+    @GetMapping("/getAllFurniture")
+    public List<Furniture> getAllFurniture() {
         return furnitureService.getAllFurnitures();
     }
 
