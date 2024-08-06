@@ -61,6 +61,12 @@
 			<artifactId>spring-data-dynamodb</artifactId>
 			<version>5.0.3</version>
 		</dependency>
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>26.5.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
