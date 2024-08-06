@@ -1,6 +1,7 @@
 package com.falcon.furniture.furniture.service;
 
 import com.falcon.furniture.furniture.dto.AddFurnitureDto;
+import com.falcon.furniture.furniture.dto.FilterFurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureErrorDto;
 import com.falcon.furniture.furniture.model.Furniture;
@@ -18,4 +19,6 @@ public interface FurnitureService {
     FurnitureErrorDto updateFurniture(String furnitureId, Furniture furniture);
 
     List<Furniture> getAllFurnitures();
+
+    List<Furniture> getFurnituresByFilter(FilterFurnitureDto filterFurnitureDto);
 }
