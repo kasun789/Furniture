@@ -2,8 +2,7 @@ package com.falcon.furniture.furniture.service.Impl;
 
 import com.falcon.furniture.furniture.dao.Impl.FurnitureDaoImpl;
 import com.falcon.furniture.furniture.dao.UserDao;
-import com.falcon.furniture.furniture.dto.ChangePasswordRequestDto;
-import com.falcon.furniture.furniture.dto.UserDto;
+import com.falcon.furniture.furniture.dto.*;
 import com.falcon.furniture.furniture.model.User;
 import com.falcon.furniture.furniture.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +28,21 @@ public class UserServiceImpl implements UserService {
     public UserDto changePassword(ChangePasswordRequestDto changePasswordRequestDto) {
         return userRepository.changePassword(changePasswordRequestDto);
     }
+
+    @Override
+    public ForgottenPasswordDto forgottenPassword(String email) {
+        return userRepository.forgetPassword(email);
+    }
+
+    @Override
+    public VerifyUserDto verfyUser(String verficationCode) {
+        return userRepository.verfyUser(verficationCode);
+    }
+
+    @Override
+    public UserDto setPassword(SetForgottenPasswordDto setForgottenPasswordDto) {
+        return userRepository.setPassword(setForgottenPasswordDto);
+    }
+
+
 }

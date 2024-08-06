@@ -2,6 +2,7 @@ package com.falcon.furniture.furniture.service.Impl;
 
 import com.falcon.furniture.furniture.dao.Impl.ModelDaoImpl;
 import com.falcon.furniture.furniture.dto.AddFurnitureDto;
+import com.falcon.furniture.furniture.dto.FilterFurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureErrorDto;
 import com.falcon.furniture.furniture.model.Furniture;
@@ -43,5 +44,10 @@ public class FurnitureServiceImpl implements FurnitureService {
     @Override
     public List<Furniture> getAllFurnitures() {
         return furnitureRepository.getAllItems();
+    }
+
+    @Override
+    public List<Furniture> getFurnituresByFilter(FilterFurnitureDto filterFurnitureDto) {
+        return furnitureRepository.filterFurnitures(filterFurnitureDto);
     }
 }
