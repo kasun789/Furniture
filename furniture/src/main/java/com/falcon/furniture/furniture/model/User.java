@@ -35,4 +35,15 @@ public class User {
     @DynamoDBAttribute
     private String phoneNo;
 
+    @DynamoDBAttribute
+    private String roleId;
+
+    public User(String name, String address, String userName, String password, String email, String phoneNo){
+        this.name = name;
+        this.address = address;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.phoneNo = phoneNo;
+    }
 }
