@@ -17,13 +17,13 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/add")
-    public OrderDto add(@RequestBody Order order) {
+    @PostMapping("/addOrder")
+    public OrderDto addOrder(@RequestBody Order order) {
         return orderService.addOrder(order);
     }
 
-    @GetMapping("/view/{id}")
-    public OrderDto getOrder(@PathVariable("id") String orderId) {
+    @GetMapping("/viewOrder/{id}")
+    public OrderDto viewOrder(@PathVariable("id") String orderId) {
         return orderService.viewOrder(orderId);
     }
 }

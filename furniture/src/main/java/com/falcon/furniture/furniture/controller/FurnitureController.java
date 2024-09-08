@@ -1,6 +1,7 @@
 package com.falcon.furniture.furniture.controller;
 
 import com.falcon.furniture.furniture.dto.AddFurnitureDto;
+import com.falcon.furniture.furniture.dto.FilterFurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureDto;
 import com.falcon.furniture.furniture.dto.FurnitureErrorDto;
 import com.falcon.furniture.furniture.model.Furniture;
@@ -24,30 +25,35 @@ public class FurnitureController {
     @Autowired
     private FurnitureService furnitureService;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/add")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/addFurniture")
     public AddFurnitureDto addFurniture(@RequestBody Furniture furniture) {
         return furnitureService.addFurniture(furniture);
     }
 
-    @GetMapping("/view/{id}")
-    public FurnitureDto viewItem(@PathVariable("id") String furnitureId) {
+    @GetMapping("/viewIFurniture/{id}")
+    public FurnitureDto viewIFurniture(@PathVariable("id") String furnitureId) {
         return furnitureService.viewFurnitureItem(furnitureId);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public FurnitureErrorDto delete(@PathVariable("id") String furnitureId) {
+    @DeleteMapping("/deleteFurniture/{id}")
+    public FurnitureErrorDto deleteFurniture(@PathVariable("id") String furnitureId) {
         return furnitureService.deleteFurniture(furnitureId);
     }
 
-    @PutMapping("/update/{id}")
-    public FurnitureErrorDto update(@PathVariable("id") String furnitureId, @RequestBody Furniture furniture) {
+    @PutMapping("/updateFurniture/{id}")
+    public FurnitureErrorDto updateFurniture(@PathVariable("id") String furnitureId, @RequestBody Furniture furniture) {
         return furnitureService.updateFurniture(furnitureId, furniture);
     }
 
-    @GetMapping("/getAll")
-    public List<Furniture> getAll() {
+    @GetMapping("/getAllFurniture")
+    public List<Furniture> getAllFurniture() {
         return furnitureService.getAllFurnitures();
+    }
+
+    @PostMapping("/filterFurnitures")
+    public List<Furniture> filterFurnitures(@RequestBody FilterFurnitureDto filterFurnitureDto) {
+        return furnitureService.getFurnituresByFilter(filterFurnitureDto);
     }
 
 }
