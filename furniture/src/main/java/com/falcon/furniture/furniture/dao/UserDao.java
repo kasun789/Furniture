@@ -4,6 +4,8 @@ import com.falcon.furniture.furniture.dto.*;
 import com.falcon.furniture.furniture.model.Model;
 import com.falcon.furniture.furniture.model.User;
 
+import java.util.Optional;
+
 public interface UserDao {
     UserDto add(User user);
 
@@ -17,5 +19,6 @@ public interface UserDao {
 
     UserDto setPassword(SetForgottenPasswordDto setForgottenPasswordDto);
 
+    Optional<User> getUserByEmail(String email);
 
 }
